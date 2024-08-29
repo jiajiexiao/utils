@@ -15,25 +15,25 @@ def vectorized_roc_auc(y_trues: np.ndarray, y_preds: np.ndarray) -> np.ndarray:
         np.ndarray: ROC AUC scores for each set of predictions.
 
     Examples:
-        >>> y_true = np.array([0, 1, 1, 0, 1])
+        >>> y_trues = np.array([0, 1, 1, 0, 1])
         >>> y_preds = np.array([[0.1, 0.23, 0.39, 0.86, 0.66]])
-        >>> vectorized_roc_auc(y_true, y_preds)
+        >>> vectorized_roc_auc(y_trues, y_preds)
     """
 
     if y_trues.ndim == 1:
         y_trues = np.tile(y_trues, (y_preds.shape[0], 1))
     elif y_trues.shape[0] != y_preds.shape[0]:
         raise ValueError(
-            "y_true and y_preds must have the same number of rows when y_true is 2D"
+            "y_true and y_preds must have the same number of rows when y_trues is 2D"
         )
 
     # Sort the predictions and the corresponding y_true values
     sorted_indices = np.argsort(y_preds, axis=1)[:, ::-1]
-    y_true_sorted = np.take_along_axis(y_trues, sorted_indices, axis=1)
+    y_trues_sorted = np.take_along_axis(y_trues, sorted_indices, axis=1)
 
     # Calculate TPR and FPR
-    tps = np.cumsum(y_true_sorted, axis=1)
-    fps = np.cumsum(1 - y_true_sorted, axis=1)
+    tps = np.cumsum(y_trues_sorted, axis=1)
+    fps = np.cumsum(1 - y_trues_sorted, axis=1)
 
     tpr = tps / tps[:, -1][:, np.newaxis]  # True positive rate
     fpr = fps / fps[:, -1][:, np.newaxis]  # False positive rate
