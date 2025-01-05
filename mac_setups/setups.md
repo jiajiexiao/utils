@@ -2,11 +2,24 @@
 
 This is a documentation for setups of a new Mac. 
 
+
+## Terminal
+For simplicity, I just use the system's Terminal as my terminal emulator with
+the following settings for colors. 
+
+```zsh
+echo 'export CLICOLOR=1' >> /Users/$USER/.zprofile
+echo 'export LSCOLORS=ExFxBxDxCxegedabagacad' >> /Users/$USER/.zprofile
+```
+
+Note that Zsh has been set as the default shell on macOS as of Catalina
+(replacing Bash). One may also use [iTerm2](https://www.iterm2.com/) or [Hyper](https://hyper.is/). 
+
 ## [Brew](https://brew.sh/)
 Brew is a package manager for macOS. It makes it easy to install and manage
 software on your computer. One can install it with the following command:
 
-```bash
+```zsh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
@@ -17,7 +30,7 @@ page on GitHub [https://github.com/Homebrew/brew/releases/](https://github.com/H
 At the end of the installation, remember to add Homebrew to your PATH by adding
 to your shell profile (e.g. `~/.bash_profile` or `~/.zprofile`):
 
-```bash
+```zsh
 echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/$USER/.zprofile
 eval $(/opt/homebrew/bin/brew shellenv)
 ```
@@ -34,7 +47,7 @@ After that, you will need to config your name and email in Git. They will be
 used to identify you when you commit changes to the repository. You can do it
 with the following command: 
 
-```bash
+```zsh
 git config --global user.name "Your Name"
 git config --global user.email "Your Email".
 ```
@@ -43,10 +56,8 @@ Note if you have email privacy enabled on GitHub, you will need to use a
 different email address when committing changes to the repository. Otherwise,
 Git may not allow you to push your changes to the remote repository onGitHub as
 your email address will be visible to the public. You can find a corresponding
-alternative email address on [GitHub' settings email setting
+alternative email address on [GitHub's settings email setting
 page](https://github.com/settings/emails) that you can use to commit changes to
 your repository. Such an email address should be ending with
-`@users.noreply.github.com`. Your activities will be recorded as `Your Name
-<Your Email>` in the commit history and will be recognized by GitHub's activity
-overview. 
-
+`@users.noreply.github.com`. Your activities will be recorded as `Your Name <Your Email>` 
+in the commit history and will be recognized by GitHub's activity overview. 
