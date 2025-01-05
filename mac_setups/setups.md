@@ -1,6 +1,6 @@
 # Config a new Mac 
 
-This is a documentation for setups of a new Mac. 
+This is a log for how I set up my new Mac. 
 
 
 ## Terminal
